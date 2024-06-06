@@ -13,9 +13,12 @@ const CardResult = ({ jsonData }) => {
                         {jsonData ? JSON.stringify(jsonData, null, 2) : 'No data available'}
                     </pre>
                 </div>
-                <div className="flex flex-col sm:flex-row items-center justify-center space-y-4 mt-6 space-x-0 sm:space-y-0 sm:space-x-4 lg:space-x-8">
-                    <button className="bg-red-900 text-white font-bold py-2 px-4 sm:py-2.5 sm:px-5 md:py-3 md:px-6 lg:py-4 lg:px-8 rounded text-sm sm:text-base md:text-lg lg:text-xl">
+                <div className="flex space-x-4 sm:flex-row items-center justify-center  mt-6  sm:space-y-0 sm:space-x-4 lg:space-x-8">
+                    <button className="bg-red-900 hover:bg-red-800 text-white font-bold py-2 px-4 sm:py-2.5 sm:px-5 md:py-3 md:px-6 lg:py-4 lg:px-8 rounded text-sm sm:text-base md:text-lg lg:text-xl">
                         Regresar
+                    </button>
+                    <button className="bg-green hover:bg-emerald-600 text-white font-bold py-2 px-4 sm:py-2.5 sm:px-5 md:py-3 md:px-6 lg:py-4 lg:px-8 rounded text-sm sm:text-base md:text-lg lg:text-xl">
+                        Guardar
                     </button>
                 </div>
             </div>
