@@ -3,7 +3,7 @@ import React from 'react'
 export default function CardViewDataC() {
     return (
         <div className="max-w-md mx-auto mt-10 p-6 bg-cardfont border rounded-lg shadow-md ">
-          <h2 className="text-xl font-semibold mb-4 text-center">Información Desencriptada</h2>
+          <h2 className="text-xl font-bold mb-4 text-center">Información Desencriptada</h2>
           <form>
             <div className="mb-4 md:flex md:items-center">
               <div className="md:w-1/3">
@@ -75,14 +75,12 @@ export default function CardViewDataC() {
                 ></textarea>
               </div>
             </div>
-            <div className="flex items-center justify-center">
-              <button
-                type="button"
-                className="bg-red-800 hover:bg-pink-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-              >
-                Regresar
-              </button>
-            </div>
+            <div className="flex mx-auto gap-3 justify-center">
+                    <button className="bg-red-900 hover:bg-red-800 text-white font-semibold p-2 rounded focus:outline-none">
+                        Regresar</button>
+                    <button className="bg-green hover:bg-emerald-600 text-white font-semibold p-2  rounded focus:outline-none">
+                        Guardar</button>
+                </div>
           </form>
         </div>
       );
