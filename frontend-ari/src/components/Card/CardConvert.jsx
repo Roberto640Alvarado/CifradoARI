@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
+import { useNavigate } from "react-router-dom";
 
 const CardConverter = () => {
+  const navigate = useNavigate();
   const [fileContent, setFileContent] = useState('');
   const [key, setKey] = useState('');
   const [delimiter, setDelimiter] = useState('');
@@ -15,6 +17,10 @@ const CardConverter = () => {
   const handleConvert = () => {
     // Conversión de TXT a JSON utilizando key y delimiter
     // Implementa tu lógica aquí
+    navigate('/resultado');
+  };
+  const handleBack = () => {
+    navigate('/');
   };
 
   return (
@@ -60,7 +66,7 @@ const CardConverter = () => {
       </div>
 
       <div className="flex justify-center mb-7">
-        <button className="bg-red-900 text-white font-bold py-2 px-4 md:py-3 md:px-6 lg:py-4 lg:px-8 rounded text-sm md:text-base lg:text-lg mr-4">Regresar</button>
+        <button className="bg-red-900 text-white font-bold py-2 px-4 md:py-3 md:px-6 lg:py-4 lg:px-8 rounded text-sm md:text-base lg:text-lg mr-4" onClick={handleBack} >Regresar</button>
         <button className="bg-green text-white font-bold py-2 px-4 md:py-3 md:px-6 lg:py-4 lg:px-8 rounded text-sm md:text-base lg:text-lg" onClick={handleConvert}>Convertir</button>
       </div>
     </div>

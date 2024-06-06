@@ -1,6 +1,15 @@
-import React from 'react'
+import React from 'react';
+import { useNavigate } from "react-router-dom";
 
 export default function CardViewDataC() {
+  const navigate = useNavigate();
+  const handleSave = () => {
+        alert('Tu archivo ha sido desencriptado y guardado!');
+        navigate('/');
+  };
+  const handleBack = () => {
+    navigate('/desencriptar');
+  };
     return (
         <div className="max-w-md mx-auto mt-10 p-6 bg-cardfont border rounded-lg shadow-md ">
           <h2 className="text-xl font-bold mb-4 text-center">Información Desencriptada</h2>
@@ -76,9 +85,9 @@ export default function CardViewDataC() {
               </div>
             </div>
             <div className="flex mx-auto gap-3 justify-center">
-                    <button className="bg-red-900 hover:bg-red-800 text-white font-semibold p-2 rounded focus:outline-none">
+                    <button onClick={handleBack} className="bg-red-900 hover:bg-red-800 text-white font-semibold p-2 rounded focus:outline-none">
                         Regresar</button>
-                    <button className="bg-green hover:bg-emerald-600 text-white font-semibold p-2  rounded focus:outline-none">
+                    <button onClick={handleSave} className="bg-green hover:bg-emerald-600 text-white font-semibold p-2  rounded focus:outline-none">
                         Guardar</button>
                 </div>
           </form>
