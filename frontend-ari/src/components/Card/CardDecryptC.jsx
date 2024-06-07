@@ -1,5 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import CifrarServices from "../../services/CifrarServices";
 
 const DecryptCard = () =>{
     const navigate = useNavigate();

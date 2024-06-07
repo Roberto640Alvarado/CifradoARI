@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from "react-router-dom";
+import CifrarServices from '../../services/CifrarServices';
 
 const CardConverter = () => {
   const navigate = useNavigate();
@@ -16,6 +17,11 @@ const CardConverter = () => {
 
   const handleConvert = () => {
     // Conversión de TXT a JSON utilizando key y delimiter
+    //Esto solo es una prueba, se debe implementar la lógica correcta y validaciones necesarias
+    const inputText = "031110567-7;Jaime Roberto;Climaco Navarrete;2346570012456;GOLD;227799898;(17.817752830134766, -90.7695083618164)\n08111567-7;Juan Rodolfo;Perez;68934657001245;ELITE;22551004;(14.907752830134766, -90.6795083618164, -89.12396514892578)"
+    const encryptionKey = "prueba";
+    const delimiter = ";";
+    CifrarServices.convertAndEncrypt(inputText, delimiter, encryptionKey);
     // Implementa tu lógica aquí
     navigate('/resultado');
   };
@@ -29,7 +35,7 @@ const CardConverter = () => {
       <div className="flex flex-col sm:flex-row justify-between mb-5">
         <label className="flex items-center justify-center bg-yellow-500 p-2 rounded-lg cursor-pointer mb-2 sm:mb-0 w-full h-full">
           <span className="font-bold text-white text-lg">FileChooser</span>
-          <input type="file" className="hidden" onChange={handleFileUpload} />
+          <input type="file" accept='.txt' className="hidden" onChange={handleFileUpload} />
         </label>
         <button className="bg-blue-700 p-3 rounded-lg text-lg text-white font-bold ml-4">Cargar</button>
       </div>
