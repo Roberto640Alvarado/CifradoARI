@@ -1,7 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from '/src/App.jsx';
-import './index.css'; 
+import './index.css';
+import Routes2 from './Routes/Route';
 
 const jsonData = {
     "documento": "03110567-7",
@@ -31,8 +32,9 @@ console.log('Rendering CardResult with jsonData:', jsonData);
 
 ReactDOM.render(
     <React.StrictMode>
-        <App />
+        {/*<App />*/}
         {/*<CardResult jsonData={jsonData} />*/}
+        <Routes2/>
     </React.StrictMode>,
     document.getElementById('root')
 );
