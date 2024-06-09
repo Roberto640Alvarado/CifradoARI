@@ -15,6 +15,14 @@ const CardConverter = () => {
 
   const handleFileUpload = (event) => {
     const file = event.target.files[0];
+    if (file && file.type !== "text/plain") {
+      MySwal.fire({
+        icon: "error",
+        title: "Formato de archivo no válido",
+        text: "Por favor seleccione un archivo .txt.",
+      });
+      return;
+    }
     const reader = new FileReader();
     reader.onload = (e) => setUploadedFileContent(e.target.result);
     reader.readAsText(file);
@@ -32,7 +40,7 @@ const CardConverter = () => {
     setFileContent(uploadedFileContent);
   };
 
-  const handleConvert = () => {
+  const handleConvert = async () => {
     if (!key || !delimiter) {
       MySwal.fire({
         icon: "error",
@@ -41,15 +49,19 @@ const CardConverter = () => {
       });
       return;
     }
-    // Conversión de TXT a JSON utilizando key y delimiter
-    //Esto solo es una prueba, se debe implementar la lógica correcta y validaciones necesarias
-    const inputText =
-      "031110567-7;Jaime Roberto;Climaco Navarrete;2346570012456;GOLD;227799898;(17.817752830134766, -90.7695083618164)\n08111567-7;Juan Rodolfo;Perez;68934657001245;ELITE;22551004;(14.907752830134766, -90.6795083618164, -89.12396514892578)";
-    const encryptionKey = "prueba";
-    const delimiterValue = ";";
-    CifrarServices.convertAndEncrypt(inputText, delimiterValue, encryptionKey);
-    // Implementa tu lógica aquí
-    navigate("/resultado");
+
+    try {
+      const response = await CifrarServices.convertAndEncrypt(fileContent, delimiter, key);
+      console.log('Respuesta del servicio:', response);
+      navigate("/resultado", { state: { jsonData: response } });
+    } catch (error) {
+      console.error('Error en la conversión y cifrado:', error);
+      MySwal.fire({
+        icon: "error",
+        title: "Error",
+        text: "Ocurrió un error al convertir y cifrar los datos.",
+      });
+    }
   };
 
   const handleBack = () => {
