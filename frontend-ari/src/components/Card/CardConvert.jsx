@@ -9,14 +9,27 @@ const MySwal = withReactContent(Swal);
 const CardConverter = () => {
   const navigate = useNavigate();
   const [fileContent, setFileContent] = useState("");
+  const [uploadedFileContent, setUploadedFileContent] = useState("");
   const [key, setKey] = useState("");
   const [delimiter, setDelimiter] = useState("");
 
   const handleFileUpload = (event) => {
     const file = event.target.files[0];
     const reader = new FileReader();
-    reader.onload = (e) => setFileContent(e.target.result);
+    reader.onload = (e) => setUploadedFileContent(e.target.result);
     reader.readAsText(file);
+  };
+
+  const handleLoadFile = () => {
+    if (!uploadedFileContent) {
+      MySwal.fire({
+        icon: "error",
+        title: "Archivo no seleccionado",
+        text: "Por favor seleccione un archivo antes de cargar.",
+      });
+      return;
+    }
+    setFileContent(uploadedFileContent);
   };
 
   const handleConvert = () => {
@@ -33,11 +46,12 @@ const CardConverter = () => {
     const inputText =
       "031110567-7;Jaime Roberto;Climaco Navarrete;2346570012456;GOLD;227799898;(17.817752830134766, -90.7695083618164)\n08111567-7;Juan Rodolfo;Perez;68934657001245;ELITE;22551004;(14.907752830134766, -90.6795083618164, -89.12396514892578)";
     const encryptionKey = "prueba";
-    const delimiter = ";";
-    CifrarServices.convertAndEncrypt(inputText, delimiter, encryptionKey);
+    const delimiterValue = ";";
+    CifrarServices.convertAndEncrypt(inputText, delimiterValue, encryptionKey);
     // Implementa tu lógica aquí
     navigate("/resultado");
   };
+
   const handleBack = () => {
     navigate("/");
   };
@@ -54,7 +68,10 @@ const CardConverter = () => {
             onChange={handleFileUpload}
           />
         </label>
-        <button className="bg-blue-700 p-3 rounded-lg text-lg text-white font-bold ml-4">
+        <button
+          className="bg-blue-700 p-3 rounded-lg text-lg text-white font-bold ml-4"
+          onClick={handleLoadFile}
+        >
           Cargar
         </button>
       </div>
