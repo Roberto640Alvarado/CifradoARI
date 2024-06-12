@@ -1,11 +1,17 @@
 import React from 'react';
 import { useLocation, useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
+
+const MySwal = withReactContent(Swal);
 
 const CardResult = () => {
     const navigate = useNavigate();
     const location = useLocation();
     const jsonData = location.state?.jsonData || {};
     const data = jsonData.data || null;
+
+    
 
     const handleSave = async () => {
         if (data) {
@@ -22,6 +28,12 @@ const CardResult = () => {
             const writable = await fileHandle.createWritable();
             await writable.write(blob);
             await writable.close();
+            MySwal.fire({
+                icon: "success",
+                title: "Guardado",
+                text: "Archivo guardado con éxito!",
+              });
+            navigate('/');
         } else {
             alert('No hay datos para guardar');
         }
@@ -50,6 +62,7 @@ const CardResult = () => {
                     </button>
                     <button onClick={handleSave} className="bg-green hover:bg-emerald-600 text-white font-bold py-2 px-4 sm:py-2.5 sm:px-5 md:py-3 md:px-6 lg:py-4 lg:px-8 rounded text-sm sm:text-base md:text-lg lg:text-xl">
                         Guardar
+
                     </button>
                 </div>
             </div>

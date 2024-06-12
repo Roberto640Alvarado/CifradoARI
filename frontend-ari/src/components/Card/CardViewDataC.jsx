@@ -1,5 +1,9 @@
 import React from 'react';
 import { useNavigate, useLocation } from "react-router-dom";
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
+
+const MySwal = withReactContent(Swal);
 
 export default function CardViewDataC() {
     const navigate = useNavigate();
@@ -26,7 +30,11 @@ export default function CardViewDataC() {
                 await writable.write(blob);
                 await writable.close();
 
-                alert('Archivo guardado con éxito!');
+                MySwal.fire({
+                    icon: "success",
+                    title: "Guardado",
+                    text: "Archivo guardado con éxito!",
+                  });
                 navigate('/');
             } else {
                 alert('No hay datos para guardar');
