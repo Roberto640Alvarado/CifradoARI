@@ -43,7 +43,7 @@ const CardResult = () => {
         navigate('/convertirTXT');
     };
 
-    console.log('CardResult rendered with data:', data);
+    //console.log('CardResult rendered with data:', data);
 
     return (
         <div className="flex items-center justify-center min-h-screen p-4">

@@ -61,6 +61,20 @@ const DecryptCard = () => {
     navigate("/");
   };
 
+  const handleDelimiterChange = (e) => {
+    const value = e.target.value;
+    if (value === ".") {
+      MySwal.fire({
+        icon: "error",
+        title: "Delimitador no válido",
+        text: "El delimitador no puede ser el caracter punto.",
+      });
+      setDelimiter("");
+    } else {
+      setDelimiter(value);
+    }
+  };
+
   return (
     <div className="max-w-md mx-auto mt-36 md:mt-40 lg:mt-40 md:max-w-xl p-6 bg-cardfont border rounded-lg shadow-md">
       <div className="flex flex-col sm:flex-row justify-between mb-5">
@@ -100,7 +114,7 @@ const DecryptCard = () => {
           placeholder="Ingrese el delimitador..."
           className="p-1 rounded-md md:text-lg"
           value={delimiter}
-          onChange={(e) => setDelimiter(e.target.value)}
+          onChange={handleDelimiterChange}
           required
         />
       </div>

@@ -56,7 +56,7 @@ const CardConverter = () => {
 
     try {
       const response = await CifrarServices.convertAndEncrypt(fileContent, delimiter, key);
-      console.log('Respuesta del servicio:', response);
+      //console.log('Respuesta del servicio:', response);
       navigate("/resultado", { state: { jsonData: response } });
     } catch (error) {
       console.error('Error en la conversión y cifrado:', error);
