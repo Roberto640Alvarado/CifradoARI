@@ -10,6 +10,7 @@ const CardConverter = () => {
   const navigate = useNavigate();
   const [fileContent, setFileContent] = useState("");
   const [uploadedFileContent, setUploadedFileContent] = useState("");
+  const [fileName, setFileName] = useState("");
   const [key, setKey] = useState("");
   const [delimiter, setDelimiter] = useState("");
 
@@ -24,8 +25,11 @@ const CardConverter = () => {
       return;
     }
     const reader = new FileReader();
-    reader.onload = (e) => setUploadedFileContent(e.target.result);
+    reader.onload = (e) => {
+      setUploadedFileContent(e.target.result);
+    };
     reader.readAsText(file);
+    setFileName(file.name); // Guardar el nombre del archivo
   };
 
   const handleLoadFile = () => {
@@ -52,7 +56,7 @@ const CardConverter = () => {
 
     try {
       const response = await CifrarServices.convertAndEncrypt(fileContent, delimiter, key);
-      console.log('Respuesta del servicio:', response);
+      //console.log('Respuesta del servicio:', response);
       navigate("/resultado", { state: { jsonData: response } });
     } catch (error) {
       console.error('Error en la conversión y cifrado:', error);
@@ -87,6 +91,12 @@ const CardConverter = () => {
           Cargar
         </button>
       </div>
+
+      {fileName && (
+        <div className="mb-5 text-center">
+          <p className="font-bold">Archivo seleccionado: {fileName}</p>
+        </div>
+      )}
 
       <div className="mb-5">
         <h2 className="text-center font-bold mb-2">Visualización Origen</h2>
