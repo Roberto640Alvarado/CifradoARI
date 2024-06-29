@@ -1,5 +1,5 @@
 import axios from 'axios';
-const BASE_API = 'http://localhost:3000'
+const BASE_API = 'https://cifradoari-3.onrender.com'
 
 const API = axios.create({
   baseURL: BASE_API,
